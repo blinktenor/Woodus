@@ -11,10 +11,6 @@
 
         <link rel="stylesheet" href="/stylesheets/style.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-        <style>
-            html                    { overflow-y:scroll; }
-            body                    { padding-top:50px; }
-        </style>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script><!-- load angular -->
@@ -22,6 +18,50 @@
 
     </head>
     <body ng-controller="mainController">
-
+        <!--<select ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>-->
+        <!--        <select ng-options="monster.creature for monster in monsterData" ng-model="selected"></select>
+                <br>
+                <div ng-if="selected">
+                    {{selected.sources}}
+                    <br>
+                    <div ng-repeat="source in selected.sources">
+                        <div ng-repeat="(petigree, mates) in source">
+                        Source: {{petigree}}
+                        <br>
+                        Mates: {{mates}}
+                        <br>
+                        </div>
+                    </div>
+                    One repeat
+                </div>-->
+        <div ng-repeat="(key,level) in currentTree" class="row">
+            <!-- offset col -->
+            <div class="col-md-{{(12%Math.pow(2,key))/2}}"></div>
+            <div ng-repeat="creature in level" class="level">
+                
+                <div ng-if="creature.name" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            {{creature.name}}
+                        </div>
+                        <div class="panel-body">
+                            {{creature.offspring}}
+                            <br>
+                            <label></label>
+                            <label><input type="checkbox" ng-checked="{{creature.found}}" ng-change="foundCreature({{creature}})" ng-model="none"> Found already? </label>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="creature.options.length > 0" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
+                    <select ng-options="option for option in creature.options" ng-model="selected"></select>
+                </div>
+                <div ng-if="creature.name === undefined && creature.options.length === undefined" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
+                    break
+                </div>
+            </div>
+            <!-- offset col -->
+            <div class="col-md-{{(12%Math.pow(2,key))/2}}"></div>
+            <br>
+        </div>
     </body>
 </html>
