@@ -9,59 +9,58 @@
 
         <title>Woodus</title>
 
-        <link rel="stylesheet" href="/stylesheets/style.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+        <!--<link rel="stylesheet" href="/stylesheets/style.css">-->
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">-->
+        <!-- Angulars Material CSS using RawGit to load directly from `bower-material/master` -->
+        <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script><!-- load angular -->
+        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> load jquery -->
+
+        <!-- Angular Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.js"></script>
+
+        <!-- Angular Material Javascript using RawGit to load directly from `bower-material/master` -->
+        <script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script>
+
         <script src="core.js"></script>
 
+        <script type="text/ng-template" id="creature.html">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{parent.name}}
+                </div>
+                <div ng-if="parent.image">
+                    <img ng-src="{{parent.image}}">
+                </div>
+                <div class="panel-body">
+                    <label><input type="checkbox" ng-click="parent.bred()"> Found already? </label>
+                    <br>
+                   
+              
+                </div>
+            <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
+            </div>
+        </div>
+        </script>
     </head>
     <body ng-controller="mainController">
-        <!--<select ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>-->
-        <!--        <select ng-options="monster.creature for monster in monsterData" ng-model="selected"></select>
-                <br>
-                <div ng-if="selected">
-                    {{selected.sources}}
-                    <br>
-                    <div ng-repeat="source in selected.sources">
-                        <div ng-repeat="(petigree, mates) in source">
-                        Source: {{petigree}}
-                        <br>
-                        Mates: {{mates}}
-                        <br>
-                        </div>
-                    </div>
-                    One repeat
-                </div>-->
-        <div ng-repeat="(key,level) in currentTree" class="row">
-            <!-- offset col -->
-            <div class="col-md-{{(12%Math.pow(2,key))/2}}"></div>
-            <div ng-repeat="creature in level" class="level">
-                
-                <div ng-if="creature.name" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            {{creature.name}}
-                        </div>
-                        <div class="panel-body">
-                            {{creature.offspring}}
-                            <br>
-                            <label></label>
-                            <label><input type="checkbox" ng-checked="{{creature.found}}" ng-change="foundCreature({{creature}})" ng-model="none"> Found already? </label>
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="creature.options.length > 0" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
-                    <select ng-options="option for option in creature.options" ng-model="selected"></select>
-                </div>
-                <div ng-if="creature.name === undefined && creature.options.length === undefined" class="creature col-md-{{Math.floor(12/Math.pow(2,key))}}">
-                    break
-                </div>
-            </div>
-            <!-- offset col -->
-            <div class="col-md-{{(12%Math.pow(2,key))/2}}"></div>
-            <br>
+        <div class="creature">
+            <div ng-repeat="parent in desiredCreature" ng-include="'creature.html'"></div>
         </div>
+        
+            <md-input-container>
+              <label>State</label>
+              <md-select ng-model="userState">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="state in states" ng-value="state.abbrev" ng-disabled="$index === 1">
+                  {{state.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+        
+        <button ng-click="addLeaf()">Add Leaf</button>
     </body>
 </html>
