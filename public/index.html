@@ -10,7 +10,7 @@
         <title>Woodus</title>
 
         <!--<link rel="stylesheet" href="/stylesheets/style.css">-->
-        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <!-- Angulars Material CSS using RawGit to load directly from `bower-material/master` -->
         <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
 
@@ -38,10 +38,18 @@
                 <div class="panel-body">
                     <label><input type="checkbox" ng-click="parent.bred()"> Found already? </label>
                     <br>
-                   
-              
+                    <div ng-if="parent.parents.length < 1">
+                        <md-input-container>
+                            <label>Parents</label>
+                            <md-select ng-model="parent.parentHolder" ng-change="parent.newParents()">
+                              <md-option ng-repeat="option in parent.options" ng-value="option">
+                                {{formatParents(option)}}
+                              </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
                 </div>
-            <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
             </div>
         </div>
         </script>
@@ -50,17 +58,5 @@
         <div class="creature">
             <div ng-repeat="parent in desiredCreature" ng-include="'creature.html'"></div>
         </div>
-        
-            <md-input-container>
-              <label>State</label>
-              <md-select ng-model="userState">
-                <md-option><em>None</em></md-option>
-                <md-option ng-repeat="state in states" ng-value="state.abbrev" ng-disabled="$index === 1">
-                  {{state.abbrev}}
-                </md-option>
-              </md-select>
-            </md-input-container>
-        
-        <button ng-click="addLeaf()">Add Leaf</button>
     </body>
 </html>

@@ -1,4 +1,4 @@
-angular.module('Woodus', [])
+angular.module('Woodus', ['ngMaterial'])
 //.config(function($mdIconProvider) {
 //    $mdIconProvider
 //      .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
@@ -7,39 +7,13 @@ angular.module('Woodus', [])
 .controller('mainController',
 function ($scope) {
 
-    $scope.options = [{creature : "Dracolord (Human Form)", sources : [{"Servant" : "Andreal"}, {"Servant" : "GreatDrak"}]},
-{creature : "Dracolord (Dragon)", sources : [{"DracoLord (Human Form)" : "Divinegon"}]},
-{creature : "LordDraco", sources : [{"DracoLord (Dragon)" : "Orligon"}]},
-{creature : "Hargon", sources : [{"WhiteKing" : "MetalKing"}]},
-{creature : "Sidoh", sources : [{"Jamirus" : "Rosevine"}]},
-{creature : "Genosidoh", sources : [{"Sidoh" : "Titanis"}]},
-{creature : "Baramos", sources : [{"Hargon" : "Orochi"}]},
-{creature : "Zoma", sources : [{"DracoLord (Human Form)" : "Sidoh"},{"DracoLord (Dragon)" : "Sidoh"}]},
-{creature : "Asurazoma", sources : [{"Zoma" : "PsychoPiz"}]},
-{creature : "Pizzaro", sources : [{"Durran" : "Divinegon"}]},
-{creature : "Psychopiz", sources : [{"Pizzaro" : "Esterk"}]},
-{creature : "Esterk", sources : [{"Pizzaro" : "Gorago"},{"Pizzaro" : "Kingleo"}]},
-{creature : "Mirudraas", sources : [{"Esterk" : "GoldSlime"}]},
-{creature : "Mirudraas (Transformed)", sources : [{"Mirudraas" : "Orligon"}]},
-{creature : "Mudou", sources : [{"Baramos" : "Gorago"}]},
-{creature : "Deathmore", sources : [{"Mirudraas" : "Azurile"}, {"Mirudraas (Transformed)" : "Zoma"}, {"Zoma" : "Mirudraas"}, {"Zoma" : "Mirudraas (Transformed)"},{"Zoma" : "Azurile"}]},
-{creature : "Deathmore (Transformed)", sources : [{"DeathMore" : "Titanis"},{"DeathMore" : "Armorpion"}]},
-{creature : "Deathmore (Final Form)", sources : [{"Deathmore (Transformed)" : "DarkMate"},{"Deathmore (Transformed)" : "Mudou"},{"Deathmore (Transformed)" : "Poseidon"}]},
-{creature : "Darkdrium", sources : [{"Deathmore (Final Form)" : "GranSlime"},{"Deathmore (Final Form)" : "AsuraZoma"},{"Deathmore (Transformed)" : "Watabou"}]},
-{creature : "Orgodemir", sources : [{"PsychoPiz" : "Niterich"}]},
-{creature : "Orgodemir (Transformed)", sources : [{"Orgodemir" : "LordDraco"}]}];
+    $scope.options = [{creature : "Dracolord (Human Form)", sources : [["Great Dragon","Demon-at-arms"]]},
+        {creature : "Great Dragon", sources : [["Yabby","Drakularge"],["Wrecktor","Drakularge"],["Wormonger","Drakularge"],["Winky","Drakularge"],["Wild Slime","Drakularge"],["Wild Boarfish","Drakularge"],["Weedie","Drakularge"],["Weartiger","Drakularge"],["Weaken Beakon","Drakularge"],["Wax Murderer","Drakularge"],["Walking Corpse","Drakularge"],["Tyrantosaurus","Drakularge"],["Tyrantosaurus","Bjorn"],["Treeface","Drakularge"],["Teeny Sanguini X","Drakularge"],["Teeny Sanguini","Drakularge"],["Swarmtroop","Drakularge"],["Stump Chump","Drakularge"],["Stark Raven","Drakularge"],["Spitnik","Drakularge"],["Spiked Hare","Drakularge"],["Soulspawn","Drakularge"],["Snowmangler","Drakularge"],["Snowbird","Drakularge"],["Snapdragon","Drakularge"],["Snapdragon","Bjorn"],["Snail Slime","Drakularge"],["Slime X","Drakularge"],["Slime Stack","Drakularge"],["Slime Knight","Drakularge"],["Slime","Drakularge"],["Skipper","Drakularge"],["Skeleton X","Drakularge"],["Skeleton Soldier","Drakularge"],["Skeleton","Drakularge"],["Skelegon","Drakularge"],["Skelegon","Bjorn"],["Silvapithecus","Drakularge"],["She-slime","Drakularge"],["Shell Slime","Drakularge"],["Shadow","Drakularge"],["Seedy Weedie","Drakularge"],["See Urchin","Drakularge"],["Seasaur","Drakularge"],["Seasaur","Bjorn"],["Sea Dragon","Drakularge"],["Sea Dragon","Bjorn"],["Scorpion","Drakularge"],["Scissor Beatle","Drakularge"],["Satyr","Drakularge"],["Rubble Slime","Drakularge"],["Rotten Egg","Drakularge"],["Rockbomb","Drakularge"],["Robbin' Huddle","Drakularge"],["Restless Armour","Drakularge"],["Red Dragon","Drakularge"],["Red Dragon","Bjorn"],["Puppeteer","Drakularge"],["Powie Yowie","Drakularge"],["Platypunk","Drakularge"],["Pink Sanguini","Drakularge"],["Phantom Swordsman","Drakularge"],["Phantom Fencer","Drakularge"],["Paws","Drakularge"],["Pan Piper","Drakularge"],["Orc","Drakularge"],["Octavian Sentry","Drakularge"],["Notso Macho","Drakularge"],["Noble Gasbagon","Drakularge"],["Noble Gasbagon","Bjorn"],["Night Emperor","Drakularge"],["Nardragon","Drakularge"],["Nardragon","Bjorn"],["Mummy Boy","Drakularge"],["Muddy Hand","Drakularge"],["Mud Mannequin","Drakularge"],["Mottle Slime","Drakularge"],["Missing Lynx","Drakularge"],["Mischievous Mole","Drakularge"],["Mimic","Drakularge"],["Metal Slime Knight","Drakularge"],["Metal Slime","Drakularge"],["Metal Dragon","Drakularge"],["Metal Dragon","Bjorn"],["Merman","Drakularge"],["Mental Pitcher","Drakularge"],["Megalodon","Drakularge"],["Megalodon","Bjorn"],["Mecha-mynah","Drakularge"],["Maniacal Mole","Drakularge"],["Malevolamp","Drakularge"],["Magmalice","Drakularge"],["Magic Slime","Drakularge"],["Lump Wizard","Drakularge"],["Liquid Metal Slime","Drakularge"],["Lips","Drakularge"],["Lethal Armour","Drakularge"],["Lesser Demon","Drakularge"],["Komodo","Drakularge"],["Komodo","Bjorn"]]},
+        {creature : "Demon-at-arms", sources : [["Yabby","Jamirus"],["Yabby","Boss Troll"],["Yabby","Archdemon"],["Wrecktor","Stark Raven"],["Wrecktor","Seedy Weedie"],["Wrecktor","Megalodon"],["Wrecktor","Maniacal Mole"],["Wrecktor","Living Statue"],["Wrecktor","King Cureslime"],["Wrecktor","Jamirus"],["Wrecktor","Heligator"],["Wrecktor","Gigantes"],["Wrecktor","Frou-frou"],["Wrecktor","Fright Knight"],["Wrecktor","Drakularge"],["Wrecktor","Dark Slime Knight"],["Wrecktor","Cross Bones"],["Wrecktor","Boss Troll"],["Wrecktor","Bjorn"],["Wrecktor","Archdemon"],["Wormonger","Jamirus"],["Wormonger","Boss Troll"],["Wormonger","Archdemon"],["Winky","Stark Raven"],["Winky","Seedy Weedie"],["Winky","Megalodon"],["Winky","Maniacal Mole"],["Winky","Living Statue"],["Winky","King Cureslime"],["Winky","Jamirus"],["Winky","Heligator"],["Winky","Gigantes"],["Winky","Frou-frou"],["Winky","Fright Knight"],["Winky","Drakularge"],["Winky","Dark Slime Knight"],["Winky","Cross Bones"],["Winky","Boss Troll"],["Winky","Bjorn"],["Winky","Archdemon"],["Wild Slime","Jamirus"],["Wild Slime","Boss Troll"],["Wild Slime","Archdemon"],["Wild Boarfish","Jamirus"],["Wild Boarfish","Boss Troll"],["Wild Boarfish","Archdemon"],["Wight King","Stark Raven	 	generic	Rank DecreaseWight King","Heligator	 	generic	Rank DecreaseWeedie","Jamirus"],["Weedie","Boss Troll"],["Weedie","Archdemon"],["Weartiger","Jamirus"],["Weartiger","Boss Troll"],["Weartiger","Archdemon"],["Weaken Beakon","Jamirus"],["Weaken Beakon","Boss Troll"],["Weaken Beakon","Archdemon"],["Wax Murderer","Jamirus"],["Wax Murderer","Boss Troll"],["Wax Murderer","Archdemon"],["Walking Corpse","Jamirus"],["Walking Corpse","Boss Troll"],["Walking Corpse","Archdemon"],["Wailin' Weed","Stark Raven"],["Wailin' Weed","Heligator"],["Ultra Slime","Living Statue"],["Tyrantosaurus","Jamirus"],["Tyrantosaurus","Boss Troll"],["Tyrantosaurus","Archdemon"],["Trode","Fright Knight	 	generic	Rank DecreaseTrode","Cross Bones	 	generic	Rank DecreaseTreeface","Jamirus"],["Treeface","Boss Troll"],["Treeface","Archdemon"],["Trauminator","Seedy Weedie	 	generic	Rank DecreaseTrauminator","King Cureslime	 	generic	Rank DecreaseTrauminator","Dark Slime Knight	 	generic	Rank DecreaseTrap Box","Seedy Weedie	 	generic	Rank DecreaseTrap Box","King Cureslime	 	generic	Rank DecreaseTrap Box","Dark Slime Knight	 	generic	Rank DecreaseTortured Soul","Stark Raven"],["Tortured Soul","Heligator"],["Thornella","Fright Knight"],["Thornella","Cross Bones"],["Teeny Sanguini X","Jamirus"],["Teeny Sanguini X","Boss Troll"],["Teeny Sanguini X","Archdemon"],["Teeny Sanguini","Jamirus"],["Teeny Sanguini","Boss Troll"],["Teeny Sanguini","Archdemon"],["Swarmtroop","Jamirus"],["Swarmtroop","Boss Troll"],["Swarmtroop","Archdemon"],["Stump Chump","Jamirus"],["Stump Chump","Boss Troll"],["Stump Chump","Archdemon"],["Stormsgate Citadel","Seedy Weedie"],["Stormsgate Citadel","King Cureslime"],["Stormsgate Citadel","Dark Slime Knight"],["Stark Raven","Skeleton XY"]]}
+    ];
 
     $scope.creatureCache = {};
-
-    function removeParentsAndDown(creature) {
-        var parents = creature.parents;
-        for (var a = 0; a < parents.length; a++) {
-            removeParentsAndDown($scope.currentTree[parents[a][0]][creature.parents[a][1]]);
-            $scope.currentTree[parents[a][0]][creature.parents[a][1]] = {};
-        }
-    }
     
-    var totalCritters = 1;
     $scope.desiredCreature = [new Creature("Dracolord (Human Form)", -1, 0, 0)];
     
     function Creature(name, offspring) {
@@ -48,8 +22,14 @@ function ($scope) {
         this.found = false;
         this.options = getCreatureOptions(name);
         this.parents = [];
+        this.parentHolder;
         this.addParent = function(parentName) {
           this.parents.push(new Creature(parentName, this));
+        };
+        this.newParents = function () {
+            for (var a = 0; a < this.parentHolder.length; a++) {
+                this.addParent(this.parentHolder[a]);
+            }
         };
         this.bred = function () {
             if (this.found) {
@@ -73,36 +53,9 @@ function ($scope) {
             }
         }
     }
-    
-    $scope.addLeaf = function () {
-        var critter = getRandomCritter();
-        critter.addParent("Servant");
-        totalCritters++;
+
+    $scope.formatParents = function(parents) {
+        return parents[0] + " + " + parents[1];
     };
-    
-    function getRandomCritter() {
-        var selected = Math.floor(Math.random() * (totalCritters - 1)) + 1;
-        return getCritter($scope.desiredCreature[0], selected);
-    }
-    
-    function getCritter(creature, selected) {
-        if (selected === 1) {
-            return creature;
-        }
-        for(var a = 0; a < creature.parents.length; a++) {
-            selected--;
-            var crit = getCritter(creature.parents[a], selected);
-            if (typeof(crit) === 'object') {
-                return crit;
-            } else {
-                selected = crit;
-            }
-        }
-        return selected;
-    }
-    
-    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-            'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-            'WY').split(' ').map(function (state) { return { abbrev: state }; });
 }
 );
