@@ -1,7 +1,7 @@
 <!-- index.html -->
 <!doctype html>
 
-<html ng-app="Woodus">
+<html>
     <head>
         <!-- META -->
         <meta charset="utf-8">
@@ -26,37 +26,42 @@
 
         <script src="core.js"></script>
 
-        <script type="text/ng-template" id="creature.html">
-        <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    {{parent.name}}
-                </div>
-                <div ng-if="parent.image">
-                    <img ng-src="{{parent.image}}">
-                </div>
-                <div class="panel-body">
-                    <label><input type="checkbox" ng-click="parent.bred()"> Found already? </label>
-                    <br>
-                    <div ng-if="parent.parents.length < 1">
-                        <md-input-container>
-                            <label>Parents</label>
-                            <md-select ng-model="parent.parentHolder" ng-change="parent.newParents()">
-                              <md-option ng-repeat="option in parent.options" ng-value="option">
-                                {{formatParents(option)}}
-                              </md-option>
-                            </md-select>
-                        </md-input-container>
-                    </div>
-                    <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
-                </div>
-            </div>
-        </div>
-        </script>
+
     </head>
-    <body ng-controller="mainController">
-        <div class="creature">
+    <body ng-app="Woodus">
+        <div ng-controller="mainController">
             <div ng-repeat="parent in desiredCreature" ng-include="'creature.html'"></div>
         </div>
+        
+        <script type="text/ng-template" id="creature.html">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div ng-if="parent.image">
+                            <img ng-src="{{parent.image}}">
+                        </div>
+                        {{parent.name}}
+                    </div>
+                    <label>Combined Skillsets</label>
+                    <br>
+                    {{parent.getCombinedSkills()}}
+                    <div class="panel-body">
+                        <label><input type="checkbox" ng-click="parent.bred()"> Found already? </label>
+                        <br>
+                        <div ng-if="parent.parents.length < 1">
+                            <md-input-container>
+                                <label>Parents</label>
+                                <md-select ng-model="parent.parentHolder" ng-change="parent.newParents()">
+                                  <md-option ng-repeat="option in parent.options" ng-value="option">
+                                    {{formatParents(option)}}
+                                  </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                        <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </script>
     </body>
 </html>
