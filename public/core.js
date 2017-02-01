@@ -23,13 +23,18 @@ function ($scope) {
         this.found = false;
         this.options = getCreatureOptions(name);
         this.parents = [];
+        this.parentOptions = getPedigreeList(this.options);
         this.parentHolder;
+        this.pedigree;
+        this.mate;
         this.addParent = function(parentName) {
           this.parents.push(new Creature(parentName, this));
         };
         this.newParents = function () {
-            for (var a = 0; a < this.parentHolder.length; a++) {
-                this.addParent(this.parentHolder[a]);
+            this.addParent(this.pedigree);
+            var mates = this.mate.split(",");
+            for (var a = 0; a < mates.length; a++) {
+                this.addParent(mates[a]);
             }
         };
         this.bred = function () {
@@ -43,6 +48,22 @@ function ($scope) {
         this.image = getImage(name);
         this.getCombinedSkills = function () {
             return getSkills(this.name, this.parents)
+        };
+        this.getMateOptions = function () {
+            var mateOptions = [];
+            for(var a = 0; a < this.options.length; a++) {
+                if(this.options[a].indexOf(this.pedigree) > -1) {
+                    var option = "";
+                    for(var b = 0; b < this.options[a].length; b++) {
+                        if (this.pedigree !== this.options[a][b]) {
+                            if (option !== "") option += ",";
+                            option += this.options[a][b];
+                        }
+                    }
+                    mateOptions.push(option);
+                }
+            }
+            return mateOptions;
         };
     }
     
@@ -94,7 +115,28 @@ function ($scope) {
     }
 
     $scope.formatParents = function(parents) {
-        return parents[0] + " + " + parents[1];
+        var formatter = parents[0];
+        for(var a = 1; a < parents.length; a++) {
+            formatter += " + " + parents[a];
+        }
+        return formatter;
     };
+    
+    function getPedigreeList(options) {
+        var list = [];
+        for (optionNum in options) {
+            for (a = 0; a < options[optionNum].length; a++) {
+                list.push(options[optionNum][a]);
+            }
+        }
+        return filterParentList(list);
+    }
+    
+    function filterParentList(parentList) {
+        var seen = {};
+        return parentList.filter(function(parent) {
+            return seen[parent] ? false : (seen[parent] = true);
+        });
+    }
 }
 );

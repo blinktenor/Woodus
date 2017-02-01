@@ -10,7 +10,7 @@
         <title>Woodus</title>
 
         <!--<link rel="stylesheet" href="/stylesheets/style.css">-->
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Angulars Material CSS using RawGit to load directly from `bower-material/master` -->
         <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
 
@@ -51,12 +51,25 @@
                         <div ng-if="parent.parents.length < 1">
                             <md-input-container>
                                 <label>Parents</label>
-                                <md-select ng-model="parent.parentHolder" ng-change="parent.newParents()">
-                                  <md-option ng-repeat="option in parent.options" ng-value="option">
-                                    {{formatParents(option)}}
+                                <md-select ng-model="parent.pedigree">
+                                  <md-option ng-repeat="option in parent.parentOptions" ng-value="option">
+                                    {{option}}
                                   </md-option>
                                 </md-select>
                             </md-input-container>
+                            <div ng-if="parent.pedigree">
+                                <md-input-container>
+                                    <label>Mate</label>
+                                    <md-select ng-model="parent.mate">
+                                        <md-option ng-repeat="option in parent.getMateOptions()" ng-value="option">
+                                            {{option}}
+                                        </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <div ng-if="parent.mate">
+                                <md-button ng-click="parent.newParents()">Get Lineage</md-button>
+                            </div>
                         </div>
                         <div class="col-md-6" ng-repeat="parent in parent.parents" ng-include="'creature.html'"></div>
                     </div>
