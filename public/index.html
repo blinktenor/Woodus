@@ -9,12 +9,9 @@
 
         <title>Woodus</title>
 
-        <!--<link rel="stylesheet" href="/stylesheets/style.css">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Angulars Material CSS using RawGit to load directly from `bower-material/master` -->
         <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css">
-
-        <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> load jquery -->
 
         <!-- Angular Material Dependencies -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
@@ -30,6 +27,17 @@
     </head>
     <body ng-app="Woodus">
         <div ng-controller="mainController">
+            <md-input-container>
+                <label>New Lineage</label>
+                <md-select ng-model="desiredCreatureSwitch">
+                    <md-option ng-repeat="starter in starters" ng-value="starter">
+                        {{starter}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-button ng-click="addDesired()">
+                Add new desired creature
+            </md-button>
             <div ng-repeat="parent in desiredCreature" ng-include="'creature.html'"></div>
         </div>
         
@@ -37,14 +45,19 @@
             <div class="col-md-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
+                        <md-button style="float:right;display:inline" ng-click="removeDesired(parent)">
+                            X
+                        </md-button>
                         <div ng-if="parent.image">
                             <img ng-src="{{parent.image}}">
                         </div>
                         {{parent.name}}
                     </div>
-                    <label>Combined Skillsets</label>
-                    <br>
-                    {{parent.getCombinedSkills()}}
+                    <div style="margin: 10px">
+                        <label>Combined Skillsets</label>
+                        <br>
+                        <span>{{formatSkills(parent.getCombinedSkills())}}</span>
+                    </div>
                     <div class="panel-body">
                         <label><input type="checkbox" ng-click="parent.bred()"> Found already? </label>
                         <br>
